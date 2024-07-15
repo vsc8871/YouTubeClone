@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Responsive Clone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poltawski+Nowy&family=Raleway:ital,wght@0,100;0,500;0,600;0,700;0,800;1,500&family=Roboto:wght@700&display=swap');
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            color: rgb(96, 96, 96);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            padding: 15px;
+
+        }
+
+        .header__left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header__left img {
+            width: 100%;
+            margin-left: 15px;
+            height: 70px;
+        }
+
+        .header i {
+            padding: 0px 7px;
+            cursor: pointer;
+        }
+
+        .header__search {
+            display: flex;
+            align-items: center;
+        }
+
+        .header__search form {
+            border: 1px solid #ddd;
+            height: 35px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .header__search input {
+            width: 500px;
+            border-radius: 0;
+            /* border-radius: 60px 0 0 60px; */
+            padding: 10px;
+            margin: 0;
+            border: none;
+            /* border: 2px solid #d2d2d2; */
+        }
+
+        .header__search button {
+            padding: 0;
+            margin: 0;
+            border: none;
+            /* border: 2px solid #d2d2d2; */
+            border-radius: 0;
+            /* border-radius: 0px 60px 60px 0px; */
+            height: 100%;
+        }
+
+        /* main body */
+        .mainBody {
+            height: calc(100vh - 70px);
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* sidebar */
+        .sidebar {
+            height: 100%;
+            width: 230px;
+            background-color: white;
+            overflow-y: scroll;
+        }
+
+        .sidebar__categories {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+        .sidebar__category {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: none;
+        }
+
+        .sidebar__category span {
+            margin-left: 15px;
+        }
+
+        .sidebar__category :hover {
+            background: #e5e5e5e5;
+            transition: 0.05s;
+            cursor: pointer;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        hr {
+            height: 1px;
+            background-color: #e5e5e5e5;
+            border: none;
+        }
+
+        .videos {
+            background-color: whitesmoke;
+            width: 100%;
+            height: 100%;
+            padding: 15px 15px;
+            border-top: 1px solid #ddd;
+            overflow-y: scroll;
+
+        }
+
+        .videos__container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .video {
+            width: 310px;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 30px;
+        }
+
+        .video__thumbnail {
+            width: 100%;
+            height: 170px;
+
+        }
+
+        .video__thumbnail img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .auther img {
+            object-fit: cover;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .video__details {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title h3 {
+            color: rgb(3, 3, 3);
+            line-height: 18px;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .title a,
+        span {
+            text-decoration: none;
+            color: rgb(96, 96, 96);
+            font-size: 14px;
+        }
+
+        .header__mic {
+            padding: 0px 15px;
+            border-radius: 1px solid #ddd;
+            border: none;
+        }
+
+        .mic{
+            padding: 20px;
+            display: flex;
+
+        }
+
+        /* #radius{
+            border-radius: 25px;
+            border: 23px 34px;
+        } */
+
+        /* media quary function start   */
+        @media (max-width:425px) {
+            .header__search {
+                display: none;
+
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .header__icons .material-symbols-outlined {
+                display: none;
+            }
+
+            #display {
+                display: inline;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header start -->
+    <div class="header">
+        <div class="header__left">
+            <i class="material-symbols-outlined">menu</i>
+            <img src="https://t3.ftcdn.net/jpg/06/34/31/96/240_F_634319630_txtgmPLEEQ8o4zaxec2WKrLWUBqdBBQn.jpg"
+                alt="Y">
+        </div>
+
+        <div class="header__search">
+            <form action="">
+                <input type="text" placeholder="Search" id="radius">
+                <button id="radius"><i class="material-symbols-outlined" id="display">search</i></button>
+            </form>
+            <div class="header__mic">
+                <!-- <i class="material-symbols-outlined" id="mic">mic</i> -->
+                <button class="mic"><i class="material-symbols-outlined">mic</i></button>
+            </div>
+           
+
+        </div>
+
+        <div class="header__icons">
+            <i class="material-symbols-outlined">videocam</i>
+            <i class="material-symbols-outlined">apps</i>
+            <i class="material-symbols-outlined">notifications</i>
+            <i class="material-symbols-outlined " id="display">account_circle</i>
+        </div>
+    </div>
+
+    <!-- main body start -->
+
+    <div class="mainBody">
+        <!-- sidebar start -->
+        <div class="sidebar">
+            <div class="sidebar__categories">
+                <div class="sidebar__category">
+                    <i class="material-symbols-outlined">home</i>
+                    <span>Home</span>
+                </div>
+
+                <div class="sidebar__category">
+                    <i class="material-symbols-outlined">local_fire_department</i>
+                    <span>Tranding</span>
+                </div>
+
+                <div class="sidebar__category">
+                    <i class="material-symbols-outlined">subscriptions</i>
+                    <span>Subscriptions</span>
+                </div>
+
+                <hr>
+                <div class="sidebar__category">
+                    <i class="material-symbols-outlined">library_add_check</i>
+                    <span>Library</span>
+                </div>
+
+                <div class="sidebar__category">
+                    <i class="material-symbols-outlined">history</i>
+                    <span>History</span>
+                </div>
+
+                <div class="sidebar__category">
+                    <i class="material-symbols-outlined">play_arrow</i>
+                    <span>Your videos</span>
+                </div>
+
+                <div class="sidebar__category">
+                    <i class="material-symbols-outlined">watch_later</i>
+                    <span>Watch later</span>
+                </div>
+
+                <div class="sidebar__category">
+                    <i class="material-symbols-outlined">thumb_up</i>
+                    <span>Liked videos</span>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <!-- sidebar ends -->
+
+        <!-- video section start -->
+
+        <div class="videos">
+            <h1>Recommended</h1>
+            <div class="videos__container">
+                <!-- single videos start  -->
+                <div class="video">
+                    <div class="video__thumbnail">
+                        <img src="global earth.jpg" alt="">
+                    </div>
+
+                    <div class="video__details">
+                        <div class="auther">
+                            <img src="G:\HTML PROGRAM\web development\vsc logo.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <h3>This is a beautifull picture in 2023-24 from adventer | To created by vsc publication in
+                                india </h3>
+                            <a href=""> vikram programing</a>
+                            <span>10M views . 3 Month Ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video">
+                    <div class="video__thumbnail">
+                        <img src="global earth.jpg" alt="">
+                    </div>
+
+                    <div class="video__details">
+                        <div class="auther">
+                            <img src="G:\HTML PROGRAM\web development\vsc logo.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <h3>This is a beautifull picture in 2023-24 from adventer | To created by vsc publication in
+                                india </h3>
+                            <a href=""> vikram programing</a>
+                            <span>10M views . 3 Month Ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video">
+                    <div class="video__thumbnail">
+                        <img src="global earth.jpg" alt="">
+                    </div>
+
+                    <div class="video__details">
+                        <div class="auther">
+                            <img src="G:\HTML PROGRAM\web development\vsc logo.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <h3>This is a beautifull picture in 2023-24 from adventer | To created by vsc publication in
+                                india </h3>
+                            <a href=""> vikram programing</a>
+                            <span>10M views . 3 Month Ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video">
+                    <div class="video__thumbnail">
+                        <img src="global earth.jpg" alt="">
+                    </div>
+
+                    <div class="video__details">
+                        <div class="auther">
+                            <img src="G:\HTML PROGRAM\web development\vsc logo.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <h3>This is a beautifull picture in 2023-24 from adventer | To created by vsc publication in
+                                india </h3>
+                            <a href=""> vikram programing</a>
+                            <span>10M views . 3 Month Ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video">
+                    <div class="video__thumbnail">
+                        <img src="global earth.jpg" alt="">
+                    </div>
+
+                    <div class="video__details">
+                        <div class="auther">
+                            <img src="G:\HTML PROGRAM\web development\vsc logo.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <h3>This is a beautifull picture in 2023-24 from adventer | To created by vsc publication in
+                                india </h3>
+                            <a href=""> vikram programing</a>
+                            <span>10M views . 3 Month Ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video">
+                    <div class="video__thumbnail">
+                        <img src="global earth.jpg" alt="">
+                    </div>
+
+                    <div class="video__details">
+                        <div class="auther">
+                            <img src="G:\HTML PROGRAM\web development\vsc logo.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <h3>This is a beautifull picture in 2023-24 from adventer | To created by vsc publication in
+                                india </h3>
+                            <a href=""> vikram programing</a>
+                            <span>10M views . 3 Month Ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video">
+                    <div class="video__thumbnail">
+                        <img src="global earth.jpg" alt="">
+                    </div>
+
+                    <div class="video__details">
+                        <div class="auther">
+                            <img src="G:\HTML PROGRAM\web development\vsc logo.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <h3>This is a beautifull picture in 2023-24 from adventer | To created by vsc publication in
+                                india </h3>
+                            <a href=""> vikram programing</a>
+                            <span>10M views . 3 Month Ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video">
+                    <div class="video__thumbnail">
+                        <img src="global earth.jpg" alt="">
+                    </div>
+
+                    <div class="video__details">
+                        <div class="auther">
+                            <img src="G:\HTML PROGRAM\web development\vsc logo.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <h3>This is a beautifull picture in 2023-24 from adventer | To created by vsc publication in
+                                india </h3>
+                            <a href=""> vikram programing</a>
+                            <span>10M views . 3 Month Ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video">
+                    <div class="video__thumbnail">
+                        <img src="global earth.jpg" alt="">
+                    </div>
+
+                    <div class="video__details">
+                        <div class="auther">
+                            <img src="G:\HTML PROGRAM\web development\vsc logo.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <h3>This is a beautifull picture in 2023-24 from adventer | To created by vsc publication in
+                                india </h3>
+                            <a href=""> vikram programing</a>
+                            <span>10M views . 3 Month Ago</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- single videos ends  -->
+
+            </div>
+        </div>
+
+        <!-- video section ends -->
+
+    </div>
+
+    <!-- main body ends -->
+
+
+</body>
+
+</html>
